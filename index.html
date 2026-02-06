@@ -312,11 +312,23 @@
                 font-size: 1.8rem;
             }
 
-            .btn-no {
-                position: absolute;
+            .question-section h2 {
+                font-size: 1.5rem;
             }
 
-            /* Easier to make it jump around */
+            button {
+                padding: 10px 24px;
+                font-size: 1rem;
+            }
+
+            .photo-frame {
+                width: 150px;
+                height: 150px;
+            }
+
+            .message-line {
+                font-size: 0.9rem;
+            }
         }
 
         canvas#confetti {
@@ -497,8 +509,16 @@
             noBtn.style.zIndex = '1000'; // Make sure it floats above everything
         };
 
-        // Desktop hover, Mobile touch start
+        // Desktop hover
         noBtn.addEventListener('mouseenter', moveNoButton);
+
+        // Mobile touch - move on touchstart (before click)
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moveNoButton();
+        }, { passive: false });
+
+        // Click handler for both desktop and mobile
         noBtn.addEventListener('click', (e) => {
             e.preventDefault();
             moveNoButton();
